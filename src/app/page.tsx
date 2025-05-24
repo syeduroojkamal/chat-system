@@ -1,8 +1,8 @@
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { ArrowRight, MessageSquare, Sparkles, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
-import demo from "@/app/image.png";
+import demo from "@/src/app/image.png";
 import Image from "next/image";
 
 export default function WelcomePage() {

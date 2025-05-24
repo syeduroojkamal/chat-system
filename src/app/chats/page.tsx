@@ -1,9 +1,11 @@
 import { MessageSquare } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
 
-import UserSelector from "@/components/UserSelector";
-import { Input } from "@/components/ui/input";
-import { sampleUsers } from "./sampleData";
+import UserSelector from "@/src/components/UserSelector";
+import { Input } from "@/src/components/ui/input";
+// import { sampleUsers } from "./sampleData";
+
+// import ClerkComponent from "./ClerkComponent";
 
 export default function Chats() {
   return (
@@ -25,10 +27,13 @@ export default function Chats() {
         />
       </div>
       <div className="flex flex-col space-y-4 mx-4">
-        {sampleUsers.map((user) => (
+        <UserSelector key={1} name={"Basic Group"} id="1" />
+        {/* Sample UserSelectors */}
+        {/* {sampleUsers.map((user) => (
           <UserSelector key={user.id} name={user.name} id={user.id} />
-        ))}
+        ))} */}
       </div>
+      {/* <ClerkComponent /> */}
     </>
   );
 }
