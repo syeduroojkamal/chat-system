@@ -19,7 +19,7 @@ export default function Chats() {
     if (!isLoaded || !isSignedIn || !user) return;
     const createUser = async () => {
       try {
-        await fetch("http://localhost:3001/user/create-user", {
+        await fetch("https://ws.chat-system.space/user/create-user", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
