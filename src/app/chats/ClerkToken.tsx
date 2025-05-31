@@ -15,11 +15,14 @@ export default function ClerkToken() {
         setToken(jwt);
         if (jwt && user.id) {
           try {
-            const res = await fetch("http://localhost:3001/user/auth-user", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ token: jwt, userId: user.id }),
-            });
+            const res = await fetch(
+              "https://ws.chat-system.space/user/auth-user",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ token: jwt, userId: user.id }),
+              }
+            );
             const data = await res.json();
             setResponse(JSON.stringify(data));
           } catch (err) {
