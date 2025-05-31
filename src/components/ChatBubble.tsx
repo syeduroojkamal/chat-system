@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Avatar,
   AvatarFallback,
@@ -15,7 +16,7 @@ export type ChatBubbleProps = {
   name?: string;
 };
 
-export default function ChatBubble({
+const ChatBubble = React.memo(function ChatBubble({
   id,
   content,
   sender,
@@ -87,4 +88,6 @@ export default function ChatBubble({
       </div>
     </div>
   );
-}
+});
+
+export default ChatBubble;
