@@ -44,6 +44,7 @@ export default function Chats() {
           <MessageSquare className="text-primary" />
           <span>Chat System</span>
         </div>
+        <ClerkToken />
         <UserButton />
       </header>
       <div className="mx-4">
@@ -55,8 +56,6 @@ export default function Chats() {
       <div className="flex flex-col space-y-4 mx-4">
         <UserSelector key={1} name={"Basic Group"} id="1" />
       </div>
-
-      <ClerkToken />
     </>
   );
 }
