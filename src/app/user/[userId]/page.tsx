@@ -39,10 +39,29 @@ export default function Page() {
     }
   }, [friends, setTargetUser, userId]);
 
+  // useEffect for making main container height smaller when input is clicked
+  // useEffect(() => {
+  //   const updateHeight = () => {
+  //     const height = window.visualViewport?.height;
+  //     if (height) {
+  //       const mainContainer = document.getElementById("main-container");
+  //       if (mainContainer) {
+  //         mainContainer.style.height = `${height}px`;
+  //       }
+  //     }
+  //   };
+
+  //   window.visualViewport?.addEventListener("resize", updateHeight);
+  //   updateHeight();
+
+  //   return () =>
+  //     window.visualViewport?.removeEventListener("resize", updateHeight);
+  // }, []);
+
   if (!friends) return <p>loading friends...</p>;
 
   return (
-    <div className="px-4 flex flex-col h-screen">
+    <div className="px-4 flex flex-col h-svh">
       <Header />
       <MessagesArea />
       <MessageInput />
