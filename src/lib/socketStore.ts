@@ -5,7 +5,8 @@ import { parseUser, User, useUserStore } from "./userStore";
 import { useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 
-const webSocketServer = "http://localhost:3001";
+// const webSocketServer = "http://localhost:3001";
+const webSocketServer = "https://ws.chat-system.space";
 
 type SocketStore = {
   socket: Socket | null;
