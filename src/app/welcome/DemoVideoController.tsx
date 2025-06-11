@@ -13,10 +13,18 @@ export default function DemoVideoController() {
       video.play();
       if (video.requestFullscreen) {
         video.requestFullscreen();
-      } else if ((video as any).webkitRequestFullscreen) {
-        (video as any).webkitRequestFullscreen();
-      } else if ((video as any).msRequestFullscreen) {
-        (video as any).msRequestFullscreen();
+      } else if ("webkitRequestFullscreen" in video) {
+        (
+          video as HTMLVideoElement & {
+            webkitRequestFullscreen: () => Promise<void> | void;
+          }
+        ).webkitRequestFullscreen();
+      } else if ("msRequestFullscreen" in video) {
+        (
+          video as HTMLVideoElement & {
+            msRequestFullscreen: () => Promise<void> | void;
+          }
+        ).msRequestFullscreen();
       }
     }
   };
