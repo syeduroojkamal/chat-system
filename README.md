@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chat System
 
-## Getting Started
+A clean, modular real-time chat MVP built with a modern stack. While chat apps are common, this project stands out for its code clarity, maintainability, and thoughtful architecture—showcasing my engineering skills.
 
-First, run the development server:
+## 🚀 Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Try it here: [https://chat-system.space/](https://chat-system.space/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+▶️ [11s YouTube Demo](https://youtube.com/shorts/gpyRzumcfUc)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture Overview
 
-## Learn More
+![System Architecture](public/architecture.jpg)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Frontend:** Next.js (TypeScript, React), TailwindCSS, shadcn, lucide-react, Zustand, Clerk (authentication)
+- **Backend:** Node.js, Express, Socket.io (real-time), MongoDB (Mongoose)
+- **Frontend Deployment:** Edge (Vercel/Next.js)
+- **Backend Deployment:** AWS EC2 (plans for Kubernetes & Redis scalability)
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Real-time messaging (Socket.io)
+- Secure authentication (Clerk)
+- Modular, readable codebase (Zustand + custom hooks)
+- Edge-ready frontend for scalability
+- Encryption (coming soon)
+- Backend repo: [syeduroojkamal/chat-system-backend](https://github.com/syeduroojkamal/chat-system-backend)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## About
+
+- MVP, not production-ready
+- Single contributor (open to strong ideas)
+- Focused on code quality, scalability, and modern practices
+
+---
+
+> If you’re looking for a candidate with hands-on experience in Next.js, MERN stack, real-time systems, and scalable architecture, check out the code and try the demo!
