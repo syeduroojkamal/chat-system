@@ -5,8 +5,8 @@ import { parseUser, User, useUserStore } from "./userStore";
 import { useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 
-// const webSocketServer = "http://localhost:3001";
-const webSocketServer = "https://ws.chat-system.space";
+// const webSocketServer = "http://localhost:8080";
+const webSocketServer = "https://api.chat-system.space";
 
 type SocketStore = {
   socket: Socket | null;
@@ -16,11 +16,20 @@ type SocketStore = {
 
 export const useSocketStore = create<SocketStore>((set, get) => ({
   socket: null,
-  setSocket: (socket: Socket) => set({ socket }),
+  setSocket: (socket: Socket) => {
+    // Log immediately (id will likely be undefined)
+    console.log("[useSocketStore] setSocket called", socket?.id);
+    // Listen for connect event to log the id when available
+    socket.on("connect", () => {
+      console.log("[useSocketStore] socket connected", socket.id);
+    });
+    set({ socket });
+  },
   disconnect: () => {
     const socket = get().socket;
     if (socket) {
       try {
+        console.log("[useSocketStore] disconnect called", socket.id);
         socket.removeAllListeners();
         socket.disconnect();
       } catch (error) {
