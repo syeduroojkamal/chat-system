@@ -1,5 +1,7 @@
 # Chat System
 
+The backend hosted on the EC2 instance has exceeded the free tier usage limits, which has caused the site to go temporarily offline. We're working on resolving this migrating to a more scalable solution.
+
 A clean, modular real-time chat MVP built with a modern stack. While chat apps are common, this project stands out for its code clarity, maintainability, and thoughtful architecture—showcasing my engineering skills.
 
 ## 🚀 Live Demo
