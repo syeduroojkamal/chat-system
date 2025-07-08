@@ -17,7 +17,7 @@ export default function MessageBubble({ message }: { message: Message }) {
 
   if (message.senderId === userState.userId) {
     return (
-      <div className="self-end bg-primary text-primary-foreground px-4 py-2 rounded-md max-w-2/3 flex flex-col items-end">
+      <div className="self-end bg-primary text-primary-foreground px-4 py-2 rounded-md max-w-2/3 flex flex-col items-end border shadow">
         <p>{message.message}</p>
         <p className="text-xs text-primary-foreground/70">
           {formatTimestamp(message.timestamp)}
@@ -26,10 +26,10 @@ export default function MessageBubble({ message }: { message: Message }) {
     );
   }
   return (
-    <div className="self-start bg-muted px-4 py-2 rounded-md max-w-2/3 flex flex-col items-start">
+    <div className="self-start bg-muted px-4 py-2 rounded-md max-w-2/3 flex flex-col items-start border shadow">
       <p>{message.message}</p>
       {message.timestamp && (
-        <p className="text-xs text-muted-foreground/50">
+        <p className="text-xs text-muted-foreground/60">
           {formatTimestamp(message.timestamp)}
         </p>
       )}
