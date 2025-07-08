@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { User } from "@/lib/userStore";
 import { User as UserIcon } from "lucide-react";
+import { convertToTitleCase } from "@/lib/utils";
 
 export default function UserSelector({ user }: { user: User }) {
   return (
@@ -11,7 +12,7 @@ export default function UserSelector({ user }: { user: User }) {
       <div className="bg-muted border p-4 rounded-full">
         <UserIcon />
       </div>
-      <p className="text-2xl">{user.fullName}</p>
+      <p className="text-2xl">{convertToTitleCase(user.fullName)}</p>
     </Link>
   );
 }
