@@ -6,7 +6,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
-import { MessageSquare, Sun } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import ThemeToggleButton from "./ThemeToggleButton";
