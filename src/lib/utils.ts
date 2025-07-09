@@ -13,12 +13,27 @@ export function convertToTitleCase(s: string) {
     .join(" ");
 }
 
-export function formatTimestamp(timestamp: string | null): string {
-  if (!timestamp) return "";
-  return new Date(timestamp).toLocaleString("en-US", {
+export function formatTimestamp(timestampString: string | null): string {
+  if (!timestampString) return "";
+  const timestamp = new Date(timestampString);
+  const currentTime = new Date();
+
+  const isToday =
+    timestamp.getDate() === currentTime.getDate() &&
+    timestamp.getMonth() === currentTime.getMonth() &&
+    timestamp.getFullYear() === currentTime.getFullYear();
+
+  const time = timestamp.toLocaleTimeString("en-IN", {
     hour: "2-digit",
     minute: "2-digit",
-    month: "short",
-    day: "numeric",
+    hour12: true,
   });
+
+  const day = timestamp.getDate();
+  const month = timestamp.toLocaleString("en-IN", { month: "long" });
+
+  if (isToday) {
+    return `${time}`;
+  }
+  return `${time}, ${day} ${month}`;
 }
