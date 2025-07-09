@@ -8,7 +8,6 @@ export type Message = {
   receiverId: string | null;
   roomId: string | null;
   timestamp: string | null;
-  delivered: boolean;
   read: boolean;
 };
 
@@ -41,7 +40,6 @@ export const parseMessage = (data: Partial<Message>): Message => {
     receiverId: data.receiverId ?? null,
     roomId: data.roomId ?? null,
     timestamp: data.timestamp ? String(data.timestamp) : null,
-    delivered: !!data.delivered,
     read: !!data.read,
   };
 };

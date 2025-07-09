@@ -22,7 +22,6 @@ export default function MessageInput() {
       roomId: null,
       messageId: null,
       timestamp: null,
-      delivered: false,
       read: false,
     });
     setInput("");
