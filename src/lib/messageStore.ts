@@ -16,6 +16,7 @@ type MessageStore = {
   setMessages: (messages: Message[]) => void;
   addMessage: (message: Message) => void;
   updateMessage: (id: string, update: Partial<Message>) => void;
+  setMarkMessagesReceived: () => void;
 };
 
 export const useMessageStore = create<MessageStore>((set) => ({
@@ -28,6 +29,10 @@ export const useMessageStore = create<MessageStore>((set) => ({
       messages: state.messages.map((message) =>
         message.messageId === id ? { ...message, ...update } : message
       ),
+    })),
+  setMarkMessagesReceived: () =>
+    set((state) => ({
+      messages: state.messages.map((message) => ({ ...message, read: true })),
     })),
 }));
 

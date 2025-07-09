@@ -17,12 +17,7 @@ type SocketStore = {
 export const useSocketStore = create<SocketStore>((set, get) => ({
   socket: null,
   setSocket: (socket: Socket) => {
-    // Log immediately (id will likely be undefined)
-    console.log("[useSocketStore] setSocket called", socket?.id);
-    // Listen for connect event to log the id when available
-    socket.on("connect", () => {
-      console.log("[useSocketStore] socket connected", socket.id);
-    });
+    // socket.on("connect", () => {});
     set({ socket });
   },
   disconnect: () => {
@@ -185,4 +180,21 @@ export const useServerToUserMessage = () => {
       socket.off("serverToUserMessage", responseHandler);
     };
   }, [socket, addMessage]);
+};
+
+export const useMarkMessagesReceived = () => {
+  const socket = useSocketStore.getState().socket;
+  const setMarkMessagesReceived = useMessageStore(
+    (state) => state.setMarkMessagesReceived
+  );
+
+  useEffect(() => {
+    if (!socket) return;
+    const handler = () => setMarkMessagesReceived();
+    socket.off("markMessageReceived").on("markMessageReceived", handler);
+
+    return () => {
+      socket.off("markMessageReceived", handler);
+    };
+  }, [socket, setMarkMessagesReceived]);
 };

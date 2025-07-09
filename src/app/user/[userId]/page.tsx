@@ -9,6 +9,7 @@ import MessagesArea from "./MessagesArea";
 import {
   useFetchAllUsers,
   useInitUser,
+  useMarkMessagesReceived,
   useSocketConnect,
 } from "@/lib/socketStore";
 import { useMessageStore } from "@/lib/messageStore";
@@ -30,6 +31,7 @@ export default function Page() {
   useSocketConnect();
   useInitUser();
   useFetchAllUsers();
+  useMarkMessagesReceived();
 
   useEffect(() => {
     if (friends) {
