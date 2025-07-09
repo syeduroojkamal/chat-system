@@ -6,6 +6,7 @@ import { convertToTitleCase } from "@/lib/utils";
 import { ArrowLeft, User } from "lucide-react";
 import Link from "next/link";
 import SideMenu from "./SideMenu";
+import { formatTimestamp } from "@/lib/utils";
 
 export default function Header() {
   const targetUser = useUserStore((state) => state.targetUser);
@@ -20,9 +21,14 @@ export default function Header() {
       <div className="bg-secondary/80 p-4 rounded-full">
         <User />
       </div>
-      <span className="text-2xl">
-        {convertToTitleCase(targetUser.fullName)}
-      </span>
+      <div className="flex flex-col">
+        <span className="text-2xl">
+          {convertToTitleCase(targetUser.fullName)}
+        </span>
+        <span className="text-sm text-muted-foreground">
+          Last login {formatTimestamp(targetUser.lastSignIn)}
+        </span>
+      </div>
       <div className="ml-auto"></div>
       <SideMenu />
     </header>
