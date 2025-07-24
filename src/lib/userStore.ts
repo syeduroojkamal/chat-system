@@ -6,13 +6,14 @@ export type User = {
   email: string;
   accountCreated: string | null;
   lastSignIn: string | null;
+  friends: string[];
 };
 
 type UserStore = {
   user: User | null;
   friends: User[] | null;
   targetUser: User | null;
-  setUser: (user: User) => void;
+  setUser: (user: User | null) => void;
   setFriends: (friends: User[]) => void;
   setTargetUser: (targetUser: User | null) => void;
 };
@@ -21,7 +22,7 @@ export const useUserStore = create<UserStore>((set) => ({
   user: null,
   friends: null,
   targetUser: null,
-  setUser: (user: User) => set({ user }),
+  setUser: (user: User | null) => set({ user }),
   setFriends: (friends: User[]) => set({ friends }),
   setTargetUser: (targetUser: User | null) => set({ targetUser }),
 }));
@@ -33,6 +34,17 @@ export const parseUser = (data: Partial<User>): User => {
     email: data.email ?? "",
     accountCreated: data.accountCreated ? String(data.accountCreated) : null,
     lastSignIn: data.lastSignIn ? String(data.lastSignIn) : null,
+    friends: Array.isArray(data.friends)
+      ? data.friends
+          .map((f) =>
+            typeof f === "string"
+              ? f
+              : typeof f === "object" && f !== null && "userId" in f
+              ? String((f as any).userId)
+              : ""
+          )
+          .filter(Boolean)
+      : [],
   };
 };
 

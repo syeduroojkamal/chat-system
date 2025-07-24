@@ -4,11 +4,12 @@ import Header from "./Header";
 import UserSelectors from "./UserSelectors";
 import { useUserStore } from "@/lib/userStore";
 import {
+  useFetchFriendsDetails,
   useInitUser,
   useSocketConnect,
   useSocketStore,
-  useFetchAllUsers,
 } from "@/lib/socketStore";
+import AddFriendButton from "./AddFriendButton";
 
 export default function Page() {
   const socket = useSocketStore((state) => state.socket);
@@ -16,7 +17,7 @@ export default function Page() {
 
   useSocketConnect();
   useInitUser();
-  useFetchAllUsers();
+  useFetchFriendsDetails();
 
   if (!socket) return <p>loading socket...</p>;
   if (!userState) return <p>loading userState...</p>;
@@ -24,6 +25,7 @@ export default function Page() {
     <div className="mx-4 mt-4">
       <Header />
       <UserSelectors />
+      <AddFriendButton />
     </div>
   );
 }

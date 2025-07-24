@@ -51,7 +51,7 @@ export const useSocketConnect = () => {
 };
 
 export const useInitUser = () => {
-  const socket = useSocketStore.getState().socket;
+  const socket = useSocketStore((state) => state.socket);
   const { user: clerkUser } = useUser();
   const setUser = useUserStore((state) => state.setUser);
 
@@ -198,3 +198,80 @@ export const useMarkMessagesReceived = () => {
     };
   }, [socket, setMarkMessagesReceived]);
 };
+
+export function useAddFriends(usersIds: string[]) {
+  const socket = useSocketStore.getState().socket;
+  const user = useUserStore.getState().user;
+
+  type Response = { success: boolean; message: string };
+
+  const responseHandler = (response: Response) => {
+    if (response.success && user) {
+      refetchUser(user.userId);
+    } else console.error("Server : ", response);
+  };
+
+  if (!socket) return;
+
+  socket.emit("addFriends", usersIds, responseHandler);
+}
+
+export function refetchUser(userId: string) {
+  const socket = useSocketStore.getState().socket;
+  const setUser = useUserStore.getState().setUser;
+
+  type Response = {
+    success: boolean;
+    message: string;
+    data?: User;
+  };
+
+  const responseHandler = (response: Response) => {
+    if (response.success && response.data) setUser(parseUser(response.data));
+    else console.error("Server : ", response);
+  };
+
+  if (!socket) return console.error(`error in refetchUser socket = ${socket}`);
+
+  socket.emit("refetchUser", userId, responseHandler);
+}
+
+export const useFetchFriendsDetails = () => {
+  const socket = useSocketStore((state) => state.socket);
+  const userState = useUserStore((state) => state.user);
+  const setFriends = useUserStore((state) => state.setFriends);
+  type Response = {
+    success: boolean;
+    message: string;
+    data?: User[];
+  };
+
+  useEffect(() => {
+    if (!socket || !userState) return;
+
+    const responseHandler = (response: Response) => {
+      if (response.success && response.data) {
+        setFriends(response.data.map(parseUser));
+      } else console.error("Server : ", response);
+    };
+
+    socket.emit("fetchFriendsDetails", userState.friends, responseHandler);
+  }, [socket, userState, setFriends]);
+};
+
+export function unfriend(myUserId: string, friendId: string) {
+  const socket = useSocketStore.getState().socket;
+  const user = useUserStore.getState().user;
+
+  type Response = { success: boolean; message: string };
+
+  const responseHandler = (response: Response) => {
+    if (response.success && user) {
+      // console.log(response.message);
+    } else console.error("Server : ", response);
+  };
+
+  if (!socket) return;
+
+  socket.emit("unfriend", myUserId, friendId, responseHandler);
+}
