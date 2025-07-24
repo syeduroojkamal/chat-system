@@ -12,9 +12,10 @@ import { useUserStore } from "@/lib/userStore";
 
 export default function SideMenu() {
   const userState = useUserStore((state) => state.user);
-  if (!userState) return "loading userId...";
   const friendId = useParams().userId as string;
   const router = useRouter();
+
+  if (!userState) return "loading userId...";
 
   const handleUnfriend = () => {
     unfriend(userState.userId, friendId);

@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useUserStore } from "@/lib/userStore";
 import { convertToTitleCase } from "@/lib/utils";
-import { useAddFriends } from "@/lib/socketStore";
+import { AddFriends } from "@/lib/socketStore";
 
 const FormSchema = z.object({
   selectedUsersIds: z
@@ -34,7 +34,7 @@ export default function UserSelectors() {
 
   const router = useRouter();
   const onSubmit = (formData: FormData) => {
-    useAddFriends(formData.selectedUsersIds);
+    AddFriends(formData.selectedUsersIds);
     router.push("/");
   };
 

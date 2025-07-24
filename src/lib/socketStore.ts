@@ -199,7 +199,7 @@ export const useMarkMessagesReceived = () => {
   }, [socket, setMarkMessagesReceived]);
 };
 
-export function useAddFriends(usersIds: string[]) {
+export function AddFriends(usersIds: string[]) {
   const socket = useSocketStore.getState().socket;
   const user = useUserStore.getState().user;
 
