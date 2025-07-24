@@ -35,15 +35,7 @@ export const parseUser = (data: Partial<User>): User => {
     accountCreated: data.accountCreated ? String(data.accountCreated) : null,
     lastSignIn: data.lastSignIn ? String(data.lastSignIn) : null,
     friends: Array.isArray(data.friends)
-      ? data.friends
-          .map((f) =>
-            typeof f === "string"
-              ? f
-              : typeof f === "object" && f !== null && "userId" in f
-              ? String((f as any).userId)
-              : ""
-          )
-          .filter(Boolean)
+      ? data.friends.map((userId) => String(userId))
       : [],
   };
 };
