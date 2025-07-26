@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className="flex items-center p-4 gap-4 h-16 border-b-2">
       <MessageSquare className="text-primary" />
-      <span className="text-lg mr-auto">Chat System</span>
+      <span className="text-lg mr-auto whitespace-nowrap">Chat System</span>
 
       <SignedOut>
         <ThemeToggleButton />

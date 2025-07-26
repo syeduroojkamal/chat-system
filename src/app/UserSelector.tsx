@@ -12,7 +12,9 @@ export default function UserSelector({ user }: { user: User }) {
       <div className="bg-muted p-4 rounded-full">
         <UserIcon />
       </div>
-      <p className="text-2xl">{convertToTitleCase(user.fullName)}</p>
+      <p className="text-2xl whitespace-nowrap overflow-hidden text-ellipsis">
+        {convertToTitleCase(user.fullName)}
+      </p>
     </Link>
   );
 }

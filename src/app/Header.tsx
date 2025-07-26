@@ -10,8 +10,10 @@ import SideMenu from "./SideMenu";
 export default function Header() {
   return (
     <header className="flex items-center gap-4">
-      <MessageSquare className="text-primary" />
-      <span className="text-lg mr-auto">Chat System</span>
+      <MessageSquare className="text-primary shrink" />
+      <span className="text-lg mr-auto whitespace-nowrap shrink">
+        Chat System
+      </span>
       <div className="ml-auto"></div>
       <ThemeToggleButton />
       <Button variant={"link"} size={"icon"}>
