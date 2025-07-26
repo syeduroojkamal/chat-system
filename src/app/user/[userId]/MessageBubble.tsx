@@ -16,7 +16,7 @@ export default function MessageBubble({ message }: { message: Message }) {
             {formatTimestamp(message.timestamp)}
           </p>
           {message.read ? (
-            <CheckCheck className="size-4" />
+            <CheckCheck className="size-4 text-blue-700" />
           ) : (
             <Check className="size-4" />
           )}
